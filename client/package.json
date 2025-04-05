@@ -7,10 +7,11 @@
     "dev": "webpack --mode development --watch"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "copy-webpack-plugin": "^13.0.0",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.0.0",
     "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "ts-loader": "^9.5.1",
-    "@types/chrome": "^0.0.260"
+    "webpack-cli": "^5.1.4"
   }
 }

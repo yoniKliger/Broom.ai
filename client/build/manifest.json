@@ -3,14 +3,26 @@
   "name": "Broom.ai",
   "version": "1.0",
   "description": "Broom.ai is a chrome extension that allows you to hide important and private context from your AI prompts.",
-  "permissions": ["activeTab"],
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "windows"
+  ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/cleaner/index.js"
+      ]
     }
   ],
   "action": {
+    "default_popup": "src/secrets-dictionary/index.html",
     "default_icon": {
       "16": "icons/broom-ai-icon_16x16.png",
       "48": "icons/broom-ai-icon_48x48.png",
@@ -22,4 +34,4 @@
     "48": "icons/broom-ai-icon_48x48.png",
     "128": "icons/broom-ai-icon_128x128.png"
   }
-} 
+}
