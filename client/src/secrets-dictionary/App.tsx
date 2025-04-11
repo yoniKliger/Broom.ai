@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Dictionary } from './types/dictionary';
+import Secret from './components/Secret/Secret/Secret';
+import SecretCreationForm from './components/SecretCreationForm/SecretCreationForm';
 
-const App: React.FC = () => {
+const App = () => {
   const [dictionary, setDictionary] = useState<Dictionary>({});
   const [word, setWord] = useState('');
   const [translation, setTranslation] = useState('');
@@ -21,7 +23,7 @@ const App: React.FC = () => {
         ...dictionary,
         [word.trim()]: translation.trim()
       };
-      
+
       await chrome.storage.sync.set({ dictionary: newDictionary });
       setDictionary(newDictionary);
       setWord('');
@@ -32,37 +34,21 @@ const App: React.FC = () => {
   const handleDeleteWord = async (wordToDelete: string) => {
     const newDictionary = { ...dictionary };
     delete newDictionary[wordToDelete];
-    
+
     await chrome.storage.sync.set({ dictionary: newDictionary });
     setDictionary(newDictionary);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleAddWord();
-    }
   };
 
   return (
     <div className="container">
       <h2>Secrets Dictionary</h2>
-      <div className="input-group">
-        <input
-          type="text"
-          value={word}
-          onChange={(e) => setWord(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Enter word to hide"
-        />
-        <input
-          type="text"
-          value={translation}
-          onChange={(e) => setTranslation(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Enter replacement"
-        />
-        <button onClick={handleAddWord}>Add</button>
-      </div>
+      <SecretCreationForm
+        word={word}
+        translation={translation}
+        onWordChange={setWord}
+        onTranslationChange={setTranslation}
+        onAdd={handleAddWord}
+      />
       <div className="word-list">
         {Object.keys(dictionary).length === 0 ? (
           <div className="empty-state">
@@ -71,19 +57,12 @@ const App: React.FC = () => {
           </div>
         ) : (
           Object.entries(dictionary).map(([word, translation]) => (
-            <div key={word} className="word-item">
-              <div className="word-pair">
-                <span className="word-text">{word}</span>
-                <span className="arrow">→</span>
-                <span className="translation-text">{translation}</span>
-              </div>
-              <button
-                className="delete-btn"
-                onClick={() => handleDeleteWord(word)}
-              >
-                Delete
-              </button>
-            </div>
+            <Secret
+              key={word}
+              word={word}
+              translation={translation}
+              onDelete={handleDeleteWord}
+            />
           ))
         )}
       </div>
