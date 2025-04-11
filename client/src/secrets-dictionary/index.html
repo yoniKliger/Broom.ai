@@ -34,7 +34,7 @@
         button:hover {
             background-color: #45a049;
         }
-        #wordList {
+        .word-list {
             margin-top: 20px;
         }
         .word-item {
@@ -61,18 +61,15 @@
         .delete-btn:hover {
             background-color: #d32f2f;
         }
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Secrets Dictionary</h2>
-        <div class="input-group">
-            <input type="text" id="wordInput" placeholder="Enter word to hide">
-            <input type="text" id="translationInput" placeholder="Enter replacement">
-            <button id="addWord">Add</button>
-        </div>
-        <div id="wordList"></div>
-    </div>
+    <div id="root"></div>
     <script src="index.js"></script>
 </body>
 </html> 

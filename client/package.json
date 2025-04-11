@@ -6,8 +6,14 @@
     "build": "webpack --mode production",
     "dev": "webpack --mode development --watch"
   },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
   "devDependencies": {
     "@types/chrome": "^0.0.260",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "copy-webpack-plugin": "^13.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.0.0",

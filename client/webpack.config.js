@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: {
     'src/cleaner/index': './src/cleaner/index.ts',
-    'src/secrets-dictionary/index': './src/secrets-dictionary/index.ts'
+    'src/secrets-dictionary/index': './src/secrets-dictionary/index.tsx'
   },
   module: {
     rules: [
@@ -16,7 +16,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   output: {
     filename: '[name].js',
